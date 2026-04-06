@@ -244,10 +244,21 @@ function App() {
               </TiltCard>
               <TiltCard className="glass-card contact-card">
                 <p className="large-text">{sections.contact.content}</p>
-                <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-                  <input type="text" placeholder="Name" required />
-                  <input type="email" placeholder="Email" required />
-                  <textarea placeholder="Your Message" rows="5" required></textarea>
+                <form className="contact-form" onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.target);
+                  const name = formData.get('name');
+                  const email = formData.get('email');
+                  const message = formData.get('message');
+                  
+                  const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+                  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                  
+                  window.location.href = `mailto:sakshigoenka32@gmail.com?subject=${subject}&body=${body}`;
+                }}>
+                  <input type="text" name="name" placeholder="Name" required />
+                  <input type="email" name="email" placeholder="Email" required />
+                  <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
                   <button type="submit" className="btn-primary">Send Message</button>
                 </form>
               </TiltCard>
