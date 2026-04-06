@@ -114,7 +114,7 @@ function App() {
     setSubmitStatus(null);
 
     // Sending email via EmailJS
-    emailjs.sendForm('service_p9e325a', 'template_aolf7gi', formRef.current, 'vDFL8lhx-IRgy5AcV')
+    emailjs.sendForm('service_p9e325a', 'template_aolf7gi', formRef.current, 'vDFL8lhx-lRgy5AcV')
       .then((result) => {
           setSubmitStatus('success');
           setIsSubmitting(false);
