@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Canvas } from '@react-three/fiber';
 import { AbstractBackground } from './components/AbstractBackground';
 import CursorTrail from './components/CursorTrail';
@@ -103,6 +104,30 @@ const TiltCard = ({ children, className }) => (
 );
 
 function App() {
+  const formRef = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Sending email via EmailJS
+    emailjs.sendForm('service_p9e325a', 'template_aolf7gi', formRef.current, 'vDFL8lhx-lRgy5AcV')
+      .then((result) => {
+          setSubmitStatus('success');
+          setIsSubmitting(false);
+          e.target.reset(); // clear form fields
+          setTimeout(() => setSubmitStatus(null), 5000);
+      }, (error) => {
+          console.error(error.text);
+          setSubmitStatus('error');
+          setIsSubmitting(false);
+          setTimeout(() => setSubmitStatus(null), 5000);
+      });
+  };
+
   return (
     <div className="main-wrapper">
       <CursorTrail />
@@ -244,22 +269,15 @@ function App() {
               </TiltCard>
               <TiltCard className="glass-card contact-card">
                 <p className="large-text">{sections.contact.content}</p>
-                <form className="contact-form" onSubmit={(e) => {
-                  e.preventDefault();
-                  const formData = new FormData(e.target);
-                  const name = formData.get('name');
-                  const email = formData.get('email');
-                  const message = formData.get('message');
-                  
-                  const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-                  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-                  
-                  window.location.href = `mailto:sakshigoenka32@gmail.com?subject=${subject}&body=${body}`;
-                }}>
+                <form ref={formRef} className="contact-form" onSubmit={sendEmail}>
                   <input type="text" name="name" placeholder="Name" required />
                   <input type="email" name="email" placeholder="Email" required />
                   <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                  <button type="submit" className="btn-primary">Send Message</button>
+                  <button type="submit" className="btn-primary" disabled={isSubmitting} style={{ opacity: isSubmitting ? 0.7 : 1 }}>
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                  </button>
+                  {submitStatus === 'success' && <p style={{color: '#4ade80', marginTop: '15px', fontSize: '0.9rem', textAlign: 'center'}}>Message sent successfully! 🚀</p>}
+                  {submitStatus === 'error' && <p style={{color: '#f87171', marginTop: '15px', fontSize: '0.9rem', textAlign: 'center'}}>Failed to send message. Please try again.</p>}
                 </form>
               </TiltCard>
             </div>
