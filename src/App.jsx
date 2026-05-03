@@ -19,28 +19,29 @@ const sections = {
   },
   about: {
     title: "About Me",
-    content: "I'm a B.Tech Computer Science graduate from Sister Nivedita University (GPA 8.96). With 1+ year of industry experience at BitCanny Technologies, I've built production-level MERN applications, scaled databases, and developed real-time features. I'm now diving deep into 3D web technologies to push the boundaries of frontend development.",
+    content: "Full-Stack MERN Developer with 1+ years of experience building scalable, high-performance web applications at BitCanny Pvt. Ltd. Proficient in designing RESTful APIs, implementing secure authentication systems, and developing responsive React interfaces. Experienced in delivering production-grade platforms including a multi-vendor marketplace and social media applications. Passionate about performance optimization and modern UI/UX with Three.js and Framer Motion.",
     skillCategories: [
-      { label: "Languages", items: ["JavaScript (ES6+)", "TypeScript", "C++", "Dart"] },
-      { label: "Frontend", items: ["React.js", "HTML5", "CSS3", "Tailwind CSS", "Three.js", "Framer Motion"] },
-      { label: "Backend", items: ["Node.js", "Express.js", "REST APIs", "WebSockets"] },
-      { label: "Databases", items: ["MongoDB", "Mongoose", "MySQL"] },
-      { label: "DevOps & Cloud", items: ["Git", "GitHub", "AWS S3", "CI/CD Pipelines", "Vercel", "Render"] },
-      { label: "Tools", items: ["Postman", "VS Code", "Figma", "Canva"] },
+      { label: "Languages", items: ["C/C++", "JavaScript (ES6+)", "TypeScript", "Python"] },
+      { label: "Frontend", items: ["React.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "Three.js", "Framer Motion"] },
+      { label: "Backend", items: ["Node.js", "Express.js", "REST APIs", "WebSockets", "Auth (JWT, bcrypt)", "RAG", "pgvector"] },
+      { label: "Databases", items: ["MongoDB", "MySQL", "Mongoose", "Vector DB"] },
+      { label: "DevOps & Cloud", items: ["AWS S3", "CI/CD Pipelines", "Vercel", "Render", "Cloudinary", "Supabase", "lambda"] },
+      { label: "Tools", items: ["Git", "GitHub", "Postman", "VS Code", "Figma", "Canva"] },
     ],
-    achievements: ["German A1 Certification", "Solved 150+ problems on LeetCode", "Top 10 teams at Udyog-IIC SNU Ideathon"]
+    achievements: ["German A1 Certification", "Solved 350+ DSA problems on LeetCode and various coding platforms"]
   },
   experience: {
     title: "Experience",
     items: [
       {
-        role: "Software Development Intern",
+        role: "MERN Stack Developer",
         company: "BitCanny Technologies Pvt. Ltd.",
         time: "Feb 2025 — Feb 2026",
         highlights: [
-          "Architected and shipped 10+ production-grade React UI screens for KlosetKlub, a multi-vendor fashion marketplace handling large product datasets with advanced search, filtering, and infinite scroll.",
-          "Engineered Node.js migration scripts that updated 500+ database records across 150+ paginated API endpoints, ensuring zero-downtime data integrity.",
-          "Built category listing pages with booking workflows for Activity Time, a kids' activities platform, implementing dynamic pricing logic (Early Bird) and reusable frontend components for scalable architecture.",
+          "Built 10+ production React UI screens and implemented search, filtering, and infinite scroll for large product datasets in KlosetKlub, a multi-vendor fashion marketplace.",
+          "Executed Node.js data migration scripts updating 500+ records across 150+ paginated API pages. Worked with structured data flow and backend processing patterns aligned with event-driven systems.",
+          "Developed category and activity listing pages with booking workflows using React.js for Activity Time, a kids' activities platform.",
+          "Implemented dynamic pricing logic (Early Bird) and reusable UI components for scalable frontend architecture."
         ],
         links: [
           { label: "KlosetKlub — Live", url: "https://www.klosetklub.com/" },
@@ -52,7 +53,9 @@ const sections = {
   projects: {
     title: "Featured Projects",
     items: [
-      { name: "InstaVibe", tech: "MERN Stack • JWT • Cloudinary • Multer", desc: "A full-stack social media platform inspired by Instagram. Features 19 REST API routes, bcrypt authentication, email-based password recovery (Nodemailer), media uploads via Cloudinary, and a real-time dynamic feed.", link: "https://instagram-backend-clone-5o3u.vercel.app/", github: "https://github.com/Sakshigoenka09/Instagram-Backend-Clone-" },
+      { name: "3D Interactive Developer Portfolio", tech: "MERN Stack • Three.js • Framer Motion", desc: "Developed a high-performance full-stack portfolio using the MERN stack with an interactive 3D UI powered by Three.js and React Three Fiber. Implemented smooth scroll animations and dynamic transitions using Framer Motion.", link: "https://rtfolio-nine-eta-ata6xmue4l.vercel.app", github: "https://github.com/Sakshigoenka09/portfolio" },
+      { name: "InstaVibe", tech: "MERN Stack • JWT • Cloudinary • Multer", desc: "Built and deployed a full-stack social platform with 19+ RESTful API endpoints. Implemented secure JWT authentication, bcrypt hashing, and email-based recovery. Integrated media uploads and designed scalable MongoDB schemas.", link: "https://instagram-backend-clone-5o3u.vercel.app/", github: "https://github.com/Sakshigoenka09/Instagram-Backend-Clone-" },
+      { name: "Community-Brain: AI Slack RAG Bot", tech: "Node.js • Groq (LLaMA 3.3) • Supabase (pgvector)", desc: "Built an AI-powered assistant for Slack using Node.js and Slack APIs to provide context-aware answers. Implemented a fast search system using RAG with Groq and Supabase, and a real-time pipeline to index new messages with a custom embedding setup.", link: null, github: null },
       { name: "Pulse", tech: "MERN Stack • In Development", desc: "A collaborative task-management platform with secure JWT authentication, project workspaces, and team-based task tracking — designed for real-world productivity workflows.", link: null, github: "https://github.com/Sakshigoenka09/pulse" },
       { name: "Furniro", tech: "HTML • CSS • JavaScript", desc: "A fully responsive furniture e-commerce frontend with pixel-perfect design, reusable UI components, and structured layouts optimized for performance and scalability.", link: "https://furniro-lime.vercel.app/", github: "https://github.com/Sakshigoenka09/Furniro" }
     ]
@@ -244,7 +247,9 @@ function App() {
                     ) : (
                       <span className="btn-disabled">Live Demo (Coming Soon)</span>
                     )}
-                    <a href={project.github} target="_blank" rel="noreferrer" className="btn-secondary">GitHub ↗</a>
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noreferrer" className="btn-secondary">GitHub ↗</a>
+                    )}
                   </div>
                 </TiltCard>
               ))}
