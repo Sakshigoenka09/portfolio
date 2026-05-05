@@ -56,7 +56,7 @@ const sections = {
       { name: "3D Interactive Developer Portfolio", tech: "MERN Stack • Three.js • Framer Motion", desc: "Developed a high-performance full-stack portfolio using the MERN stack with an interactive 3D UI powered by Three.js and React Three Fiber. Implemented smooth scroll animations and dynamic transitions using Framer Motion.", link: "https://rtfolio-nine-eta-ata6xmue4l.vercel.app", github: "https://github.com/Sakshigoenka09/portfolio" },
       { name: "InstaVibe", tech: "MERN Stack • JWT • Cloudinary • Multer", desc: "Built and deployed a full-stack social platform with 19+ RESTful API endpoints. Implemented secure JWT authentication, bcrypt hashing, and email-based recovery. Integrated media uploads and designed scalable MongoDB schemas.", link: "https://instagram-backend-clone-5o3u.vercel.app/", github: "https://github.com/Sakshigoenka09/Instagram-Backend-Clone-" },
       { name: "Community-Brain: AI RAG Bot", tech: "Node.js • Groq (LLaMA 3.3) • Supabase (pgvector) • Transformers.js", desc: "Built a platform-independent AI-powered community assistant using Node.js with a modular adapter pattern for multi-platform integration (Slack, Discord, etc.). Implemented RAG-based retrieval using Groq and Supabase (pgvector) for context-aware answers, and a real-time pipeline with custom embeddings (Transformers.js) for cost-efficient, up-to-date message indexing.", link: null, github: "https://github.com/Sakshigoenka09/helper-bot" },
-      { name: "Pulse", tech: "MERN Stack • In Development", desc: "A collaborative task-management platform with secure JWT authentication, project workspaces, and team-based task tracking — designed for real-world productivity workflows.", link: null, github: "https://github.com/Sakshigoenka09/pulse" },
+      { name: "Pulse", tech: "MERN Stack • In Development", desc: "A collaborative task-management platform with secure JWT authentication, project workspaces, and team-based task tracking — designed for real-world productivity workflows.", link: "coming_soon", github: "https://github.com/Sakshigoenka09/pulse" },
       { name: "Furniro", tech: "HTML • CSS • JavaScript", desc: "A fully responsive furniture e-commerce frontend with pixel-perfect design, reusable UI components, and structured layouts optimized for performance and scalability.", link: "https://furniro-lime.vercel.app/", github: "https://github.com/Sakshigoenka09/Furniro" }
     ]
   },
@@ -242,11 +242,11 @@ function App() {
                   <p className="tech-stack">{project.tech}</p>
                   <p className="project-desc">{project.desc}</p>
                   <div className="project-links">
-                    {project.link ? (
-                      <a href={project.link} target="_blank" rel="noreferrer" className="btn-primary" style={{ padding: '10px 25px', fontSize: '0.9rem' }}>Live Demo ↗</a>
-                    ) : (
+                    {project.link === 'coming_soon' ? (
                       <span className="btn-disabled">Live Demo (Coming Soon)</span>
-                    )}
+                    ) : project.link ? (
+                      <a href={project.link} target="_blank" rel="noreferrer" className="btn-primary" style={{ padding: '10px 25px', fontSize: '0.9rem' }}>Live Demo ↗</a>
+                    ) : null}
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noreferrer" className="btn-secondary">GitHub ↗</a>
                     )}
